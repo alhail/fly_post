@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "16389177943",
+    "firebase_url": "https://fly-post-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fly-post",
+    "storage_bucket": "fly-post.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16389177943:android:49c3c44e7b8edf80735912",
+        "android_client_info": {
+          "package_name": "com.example.fly_post"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWIsWaJNHcHFhPjwRNmRWArPSub0XM_34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
