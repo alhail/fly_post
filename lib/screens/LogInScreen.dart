@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fly_post/main.dart';
 import 'package:fly_post/screens/NewScrren.dart';
 import '../AutoService.dart';
 import 'UserAccountScreen.dart';
@@ -14,6 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _smsController = TextEditingController();
   String _verificationId = '';
+
 
   void _showVerificationErrorDialog() {
     showDialog(
@@ -54,6 +57,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(fontSize: 40.0),
                 ),
               ),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.of(context).push(
+                       MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
             ),
             ListTile(
               title: Text('Close'),
@@ -113,14 +124,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     _smsController.text,
                     _verificationId,
                   );
-                  // Navigate to User Account Screen on success
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => UserAccountScreen()),
-                  );
-                } catch (e) {
-                  // If verification fails, show error dialog
-                  _showVerificationErrorDialog();
+                  var user = FirebaseAuth.instance.currentUser;
+                  if (user != null) {
+                    // User is logged in
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => UserAccountScreen()));
+                  } else {
+                    // User is not logged in
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                  }
+                } on FirebaseAuthException catch (e) {
+                  print("is the verfication code is invalid*****");
+                  if (e.code == 'invalid-verification-code') {
+                    print("is the verfication code is invalid*****");
+                    _showVerificationErrorDialog();
+                  } else {
+                    // Handle other Firebase Auth errors or show a generic error dialog
+                  }
                 }
               },
               child: Text('Verify'),

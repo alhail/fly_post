@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:fly_post/screens/AuthScreenLogIn.dart';
 import 'package:fly_post/screens/LogInScreen.dart';
 import 'package:fly_post/screens/NewScrren.dart';
+import 'package:fly_post/screens/UserAccountScreen.dart';
 import 'AutoService.dart';
 import 'firebase_options.dart';
 
@@ -35,6 +36,14 @@ class HomeScreen extends StatelessWidget {
               accountEmail: Text(_authService.currentUser != null ? 'Logged In' : 'Logged Out'),
             ),
             ListTile(
+              title: Text('Home'),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+            ),
+            ListTile(
               title: Text('Log Out'),
               onTap: () async {
                 await _authService.signOut();
@@ -51,10 +60,14 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               child: Text('Traveler'),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
+                var user = FirebaseAuth.instance.currentUser;
+                if (user != null) {
+                  // User is logged in
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => UserAccountScreen()));
+                } else {
+                  // User is not logged in
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                }
               },
             ),
             ElevatedButton(
@@ -88,7 +101,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return HomeScreen(); // User is logged in, show the home screen
             } else {
-              return LoginScreen(); // User is not logged in, show the login screen
+              return HomeScreen(); // User is not logged in, show the login screen
             }
           }
           return Scaffold(
