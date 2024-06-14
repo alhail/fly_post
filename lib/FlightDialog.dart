@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Flight.dart';
@@ -7,7 +6,7 @@ import 'Flight.dart';
 class FlightDialog extends StatefulWidget {
   final Function(Flight) onSubmit;
 
-  FlightDialog({required this.onSubmit});
+  const FlightDialog({super.key, required this.onSubmit});
 
   @override
   _FlightDialogState createState() => _FlightDialogState();
@@ -26,22 +25,22 @@ class _FlightDialogState extends State<FlightDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Add Flight"),
+      title: const Text("Add Flight"),
       content: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            TextField(controller: _placeController, decoration: InputDecoration(hintText: "Place")),
+            TextField(controller: _placeController, decoration: const InputDecoration(hintText: "Place")),
             // Add more TextFields for each flight detail
           ],
         ),
       ),
       actions: <Widget>[
         TextButton(
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
           onPressed: () => Navigator.of(context).pop(),
         ),
         TextButton(
-          child: Text('Add'),
+          child: const Text('Add'),
           onPressed: () {
             // Collect data from fields and create a Flight object
             // Assume Flight is a model class for your flight details

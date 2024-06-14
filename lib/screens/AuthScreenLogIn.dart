@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'AuthScreenRegister.dart';
 
 class AuthScreenLogIn extends StatefulWidget {
+  const AuthScreenLogIn({super.key});
+
   @override
   _AuthScreenLogInState createState() => _AuthScreenLogInState();
 }
@@ -13,7 +15,7 @@ class _AuthScreenLogInState extends State<AuthScreenLogIn> {
   final _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
-  bool _isLogin = true; // Toggle between Login and Signup
+  final bool _isLogin = true; // Toggle between Login and Signup
 
   void _trySubmit() async {
     final isValid = _formKey.currentState?.validate();
@@ -37,19 +39,19 @@ class _AuthScreenLogInState extends State<AuthScreenLogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF6dbcfe),
+      backgroundColor: const Color(0xFF6dbcfe),
       body: Center(
         child: Card(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   TextFormField(
-                    key: ValueKey('email'),
+                    key: const ValueKey('email'),
                     validator: (value) {
                       if (value!.isEmpty || !value.contains('@')) {
                         return 'Please enter a valid email address.';
@@ -60,12 +62,12 @@ class _AuthScreenLogInState extends State<AuthScreenLogIn> {
                       _email = value!;
                     },
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Email Address',
                     ),
                   ),
                   TextFormField(
-                    key: ValueKey('password'),
+                    key: const ValueKey('password'),
                     validator: (value) {
                       if (value!.isEmpty || value.length < 7) {
                         return 'Password must be at least 7 characters long.';
@@ -76,20 +78,20 @@ class _AuthScreenLogInState extends State<AuthScreenLogIn> {
                       _password = value!;
                     },
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Password',
                     ),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   ElevatedButton(
-                    child: Text(_isLogin ? 'Login' : 'Signup'),
                     onPressed: _trySubmit,
+                    child: Text(_isLogin ? 'Login' : 'Signup'),
                   ),
                   TextButton(
                     child: Text(_isLogin ? 'Create new account' : 'I already have an account'),
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => AuthScreenRegister()),
+                        MaterialPageRoute(builder: (context) => const AuthScreenRegister()),
                       );
                     },
                   ),

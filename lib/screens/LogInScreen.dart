@@ -2,11 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fly_post/main.dart';
-import 'package:fly_post/screens/NewScrren.dart';
 import '../AutoService.dart';
 import 'UserAccountScreen.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -23,11 +24,11 @@ class _LoginScreenState extends State<LoginScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Verification Error"),
-          content: Text("The verification code entered is incorrect. Please try again."),
+          title: const Text("Verification Error"),
+          content: const Text("The verification code entered is incorrect. Please try again."),
           actions: <Widget>[
             TextButton(
-              child: Text("OK"),
+              child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -54,12 +55,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 backgroundColor: Colors.white,
                 child: Text(
                   _authService.currentUser != null ? 'L' : 'N',
-                  style: TextStyle(fontSize: 40.0),
+                  style: const TextStyle(fontSize: 40.0),
                 ),
               ),
             ),
             ListTile(
-              title: Text('Home'),
+              title: const Text('Home'),
               onTap: () {
                 Navigator.of(context).push(
                        MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
             ListTile(
-              title: Text('Close'),
+              title: const Text('Close'),
               onTap: () {
                 Navigator.of(context).pop(); // Close the drawer
               },
@@ -76,12 +77,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
             TextField(
               controller: _phoneNumberController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Phone Number',
                 prefix: Padding(
                   padding: EdgeInsets.all(4),
@@ -93,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 FilteringTextInputFormatter.digitsOnly
               ],
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () async {
                 await _authService.verifyPhoneNumber(
@@ -104,11 +105,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 );
               },
-              child: Text('Send Verification Code'),
+              child: const Text('Send Verification Code'),
             ),
             TextField(
               controller: _smsController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Verification Code',
               ),
               keyboardType: TextInputType.number,
@@ -116,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 FilteringTextInputFormatter.digitsOnly
               ],
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () async {
                 try {
@@ -127,10 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   var user = FirebaseAuth.instance.currentUser;
                   if (user != null) {
                     // User is logged in
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => UserAccountScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const UserAccountScreen()));
                   } else {
                     // User is not logged in
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
                   }
                 } on FirebaseAuthException catch (e) {
                   print("is the verfication code is invalid*****");
@@ -142,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 }
               },
-              child: Text('Verify'),
+              child: const Text('Verify'),
             ),
           ],
         ),

@@ -1,12 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fly_post/screens/AuthScreenLogIn.dart';
 
-import '../main.dart';
 
 class AuthScreenRegister extends StatefulWidget {
+  const AuthScreenRegister({super.key});
+
   @override
   _AuthScreenRegisterState createState() => _AuthScreenRegisterState();
 }
@@ -103,21 +103,21 @@ class _AuthScreenRegisterState extends State<AuthScreenRegister> {
   Widget build(BuildContext context) {
     return Scaffold(
       //drawer: NavDrawer(),
-      backgroundColor: Color(0xFF6dbcfe),
+      backgroundColor: const Color(0xFF6dbcfe),
       body: Center(
         child: Card(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   TextFormField(
-                    key: ValueKey('email'),
+                    key: const ValueKey('email'),
                     validator: (value) {
-                      if (value!.isEmpty || !value!.contains('@')) {
+                      if (value!.isEmpty || !value.contains('@')) {
                         return 'Please enter a valid email address.';
                       }
                       return null;
@@ -126,12 +126,12 @@ class _AuthScreenRegisterState extends State<AuthScreenRegister> {
                       _userEmail = value!;
                     },
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(labelText: 'Email Address'),
+                    decoration: const InputDecoration(labelText: 'Email Address'),
                   ),
                   TextFormField(
-                    key: ValueKey('username'),
+                    key: const ValueKey('username'),
                     validator: (value) {
-                      if (value!.isEmpty || value!.length < 4) {
+                      if (value!.isEmpty || value.length < 4) {
                         return 'Please enter at least 4 characters.';
                       }
                       return null;
@@ -139,10 +139,10 @@ class _AuthScreenRegisterState extends State<AuthScreenRegister> {
                     onSaved: (value) {
                       _userName = value!;
                     },
-                    decoration: InputDecoration(labelText: 'Username'),
+                    decoration: const InputDecoration(labelText: 'Username'),
                   ),
                   TextFormField(
-                    key: ValueKey('phone'),
+                    key: const ValueKey('phone'),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter a valid phone number.';
@@ -153,12 +153,12 @@ class _AuthScreenRegisterState extends State<AuthScreenRegister> {
                       _userPhoneNumber = value!;
                     },
                     keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(labelText: 'Phone Number'),
+                    decoration: const InputDecoration(labelText: 'Phone Number'),
                   ),
                   TextFormField(
-                    key: ValueKey('password'),
+                    key: const ValueKey('password'),
                     validator: (value) {
-                      if (value!.isEmpty || value!.length < 7) {
+                      if (value!.isEmpty || value.length < 7) {
                         return 'Password must be at least 7 characters long.';
                       }
                       return null;
@@ -167,20 +167,20 @@ class _AuthScreenRegisterState extends State<AuthScreenRegister> {
                     onSaved: (value) {
                       _userPassword = value!;
                     },
-                    decoration: InputDecoration(labelText: 'Password'),
+                    decoration: const InputDecoration(labelText: 'Password'),
                   ),
-                  SizedBox(height: 12),
-                  if (_isLoading) CircularProgressIndicator(),
+                  const SizedBox(height: 12),
+                  if (_isLoading) const CircularProgressIndicator(),
                   if (!_isLoading)
                     ElevatedButton(
-                      child: Text('Signup'),
                       onPressed: _trySubmit,
+                      child: const Text('Signup'),
                     ),
                     TextButton(
                       child: const Text('I already have an account'),
                       onPressed: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => AuthScreenLogIn()),
+                          MaterialPageRoute(builder: (context) => const AuthScreenLogIn()),
                         );
                       },
                     ),

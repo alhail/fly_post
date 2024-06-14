@@ -8,6 +8,8 @@ import '../main.dart';
 import 'LogInScreen.dart';
 
 class UserAccountScreen extends StatefulWidget {
+  const UserAccountScreen({super.key});
+
   @override
   _UserAccountScreenState createState() => _UserAccountScreenState();
 }
@@ -65,40 +67,40 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Add Flight"),
+          title: const Text("Add Flight"),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 TextField(
                     controller: fromController,
-                    decoration: InputDecoration(hintText: "From")),
+                    decoration: const InputDecoration(hintText: "From")),
                 TextField(
                     controller: toController,
-                    decoration: InputDecoration(hintText: "To")),
+                    decoration: const InputDecoration(hintText: "To")),
                 TextField(
                     controller: dateController,
-                    decoration: InputDecoration(hintText: "Date")),
+                    decoration: const InputDecoration(hintText: "Date")),
                 TextField(
                     controller: offersController,
-                    decoration: InputDecoration(hintText: "Offers")),
+                    decoration: const InputDecoration(hintText: "Offers")),
                 TextField(
                     controller: languageController,
-                    decoration: InputDecoration(hintText: "Language")),
+                    decoration: const InputDecoration(hintText: "Language")),
                 TextField(
                     controller: moneyController,
-                    decoration: InputDecoration(hintText: "Money")),
+                    decoration: const InputDecoration(hintText: "Money")),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("Save"),
+              child: const Text("Save"),
               onPressed: () {
                 // saveFlight(
                 //     fromController.text,
@@ -120,7 +122,7 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Account'),
+        title: const Text('User Account'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -135,12 +137,12 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                 backgroundColor: Colors.blue,
                 child: Text(
                   _authService.currentUser != null ? 'L' : 'N',
-                  style: TextStyle(fontSize: 24.0),
+                  style: const TextStyle(fontSize: 24.0),
                 ),
               ),
             ),
             ListTile(
-              title: Text('Home'),
+              title: const Text('Home'),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -148,12 +150,12 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
               },
             ),
             ListTile(
-              title: Text('Log Out'),
-              leading: Icon(Icons.exit_to_app),
+              title: const Text('Log Out'),
+              leading: const Icon(Icons.exit_to_app),
               onTap: () async {
                 await _authService.signOut();
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
                   (Route<dynamic> route) => false,
                 );
               },
@@ -173,7 +175,7 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat, // Left side
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddFlightDialog(context),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
