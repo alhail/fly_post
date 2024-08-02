@@ -155,7 +155,7 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
               onTap: () async {
                 await _authService.signOut();
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
                   (Route<dynamic> route) => false,
                 );
               },

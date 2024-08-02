@@ -4,6 +4,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fly_post/screens/LogInScreen.dart';
+import 'package:fly_post/screens/MainScreen.dart';
 import 'package:fly_post/screens/UserAccountScreen.dart';
 import 'AutoService.dart';
 import 'firebase_options.dart';
@@ -81,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const UserAccountScreen()));
                 } else {
                   // User is not logged in
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                 }
               },
             ),
@@ -141,7 +142,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: MainScreen(),//MyHomePage(),
     );
   }
 }
