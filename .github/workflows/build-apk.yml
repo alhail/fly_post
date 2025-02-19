@@ -15,11 +15,11 @@ jobs:
       with:
         flutter-version: '3.x' # Ersetze mit der aktuellen Version
 
+    - name: Abhängigkeiten aktualisieren
+          run: flutter pub upgrade
+          
     - name: Abhängigkeiten installieren
       run: flutter pub get
-
-    - name: Abhängigkeiten aktualisieren
-      run: flutter pub upgrade
 
     - name: APK erstellen
       run: flutter build apk --release
