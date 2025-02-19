@@ -26,3 +26,7 @@ jobs:
       with:
         name: release-apk
         path: build/app/outputs/flutter-apk/app-release.apk
+
+    - name: Flutter Clean & Pub Get
+      run: flutter clean && flutter pub get
+
