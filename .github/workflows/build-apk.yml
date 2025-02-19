@@ -18,6 +18,9 @@ jobs:
     - name: Abhängigkeiten installieren
       run: flutter pub get
 
+    - name: Abhängigkeiten aktualisieren
+      run: flutter pub upgrade
+
     - name: APK erstellen
       run: flutter build apk --release
 
